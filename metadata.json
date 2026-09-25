@@ -1,0 +1,4 @@
+{
+  "name": "BUGCORE",
+  "description": "Enterprise ASP.NET Core MVC defect tracking system with dual-tier Slack ChatOps integration, role-based access control, and issue management."
+}

@@ -1,0 +1,20 @@
+# Build & Output Directories
+bin/
+obj/
+out/
+dist/
+node_modules/
+
+# Dotnet & C# specific
+*.dll
+*.pdb
+*.exe
+*.cache
+.vs/
+.vscode/
+*.user
+
+# Environment & Logs
+*.log
+.env
+.DS_Store
