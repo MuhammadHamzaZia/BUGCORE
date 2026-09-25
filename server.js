@@ -57,16 +57,17 @@ function renderPage(title, activeTab, content, flashMessage = null) {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>${title} - BUGCORE MantisNetMvc</title>
+  <title>${title} - BUGCORE</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
   <style>
     :root {
-      --mantis-topbar-bg: #0f172a;
-      --mantis-sidebar-bg: #0b1120;
-      --mantis-sidebar-hover: #1e293b;
-      --mantis-sidebar-active: #0d9488;
-      --mantis-brand-teal: #14b8a6;
+      --bugcore-topbar-bg: #0f172a;
+      --bugcore-sidebar-bg: #0b1120;
+      --bugcore-sidebar-hover: #1e293b;
+      --bugcore-sidebar-active: #0d9488;
+      --bugcore-brand-teal: #14b8a6;
     }
     body {
       background-color: #f8fafc;
@@ -74,19 +75,19 @@ function renderPage(title, activeTab, content, flashMessage = null) {
       font-family: system-ui, -apple-system, sans-serif;
       min-height: 100vh;
     }
-    .topbar-mantis {
-      background-color: var(--mantis-topbar-bg);
+    .topbar-bugcore {
+      background-color: var(--bugcore-topbar-bg);
       border-bottom: 1px solid #1e293b;
       height: 56px;
       z-index: 1030;
     }
-    .sidebar-mantis {
-      background-color: var(--mantis-sidebar-bg);
+    .sidebar-bugcore {
+      background-color: var(--bugcore-sidebar-bg);
       width: 250px;
       min-height: calc(100vh - 56px);
       border-right: 1px solid #1e293b;
     }
-    .sidebar-mantis .nav-link {
+    .sidebar-bugcore .nav-link {
       color: #94a3b8;
       padding: 0.75rem 1.25rem;
       font-size: 0.925rem;
@@ -96,14 +97,14 @@ function renderPage(title, activeTab, content, flashMessage = null) {
       transition: all 0.15s ease;
       border-left: 3px solid transparent;
     }
-    .sidebar-mantis .nav-link:hover {
+    .sidebar-bugcore .nav-link:hover {
       color: #f8fafc;
-      background-color: var(--mantis-sidebar-hover);
+      background-color: var(--bugcore-sidebar-hover);
     }
-    .sidebar-mantis .nav-link.active {
+    .sidebar-bugcore .nav-link.active {
       color: #ffffff;
       background-color: #1e293b;
-      border-left-color: var(--mantis-brand-teal);
+      border-left-color: var(--bugcore-brand-teal);
       font-weight: 600;
     }
     .user-badge {
@@ -146,7 +147,7 @@ function renderPage(title, activeTab, content, flashMessage = null) {
 </head>
 <body class="d-flex flex-column">
   <!-- Top Navigation Header -->
-  <header class="topbar-mantis d-flex align-items-center justify-content-between px-3 text-white sticky-top">
+  <header class="topbar-bugcore d-flex align-items-center justify-content-between px-3 text-white sticky-top">
     <div class="d-flex align-items-center gap-3">
       <a href="/Dashboard" class="d-flex align-items-center text-white text-decoration-none fw-bold fs-5 gap-2">
         <i class="bi bi-bug-fill text-teal-400 text-info"></i>
@@ -192,7 +193,7 @@ function renderPage(title, activeTab, content, flashMessage = null) {
 
   <div class="d-flex flex-grow-1">
     <!-- Left Navigation Sidebar -->
-    <aside class="sidebar-mantis d-flex flex-column py-3">
+    <aside class="sidebar-bugcore d-flex flex-column py-3">
       <a href="/Issue/Create" class="btn btn-emerald mx-3 mb-3 d-flex align-items-center justify-content-center gap-2 py-2">
         <i class="bi bi-plus-circle-fill"></i>
         <span>Report Defect</span>
@@ -244,9 +245,13 @@ function renderPage(title, activeTab, content, flashMessage = null) {
       </nav>
 
       <div class="px-3 pt-3 border-top border-slate-800 text-slate-400 small">
-        <div class="d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center justify-content-between mb-2">
           <span>Slack Status:</span>
           <span class="badge bg-emerald-900 text-emerald-300 border border-emerald-700">Ready</span>
+        </div>
+        <div class="d-flex align-items-center gap-2 pt-2 border-top border-slate-800">
+          <img src="/logo.svg" alt="BUGCORE Emblem" width="24" height="24" />
+          <span class="fw-semibold text-slate-300" style="font-size: 0.8rem;">BUGCORE System</span>
         </div>
       </div>
     </aside>
@@ -872,5 +877,5 @@ app.post('/api/role/switch', (req, res) => {
 app.get('*', (req, res) => res.redirect('/Dashboard'));
 
 app.listen(PORT, () => {
-  console.log(`BUGCORE MantisNetMvc platform server running on port ${PORT}`);
+  console.log(`BUGCORE BugCore platform server running on port ${PORT}`);
 });

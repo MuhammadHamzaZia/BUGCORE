@@ -1,6 +1,6 @@
 # BUGCORE - Enterprise Defect Tracking & Slack ChatOps Platform
 
-**BUGCORE** (MantisNetMvc) is a modern, modular ASP.NET Core MVC defect tracking platform translated from the legacy MantisBT architecture. It features a dual-tier Slack ChatOps integration, role-based access control (RBAC), multi-project hierarchy management, and multi-channel webhook dispatching.
+**BUGCORE** (BugCore) is a modern, modular ASP.NET Core MVC defect tracking platform translated from the legacy BugCoreBT architecture. It features a dual-tier Slack ChatOps integration, role-based access control (RBAC), multi-project hierarchy management, and multi-channel webhook dispatching.
 
 ---
 
@@ -45,10 +45,10 @@ BUGCORE isolates **Organization Governance** from **Individual Employee Actions*
 ### Running with .NET 8 SDK (Local Machine)
 If you have the .NET 8 SDK installed on your machine:
 ```bash
-cd MantisNetMvc
+cd BugCore
 dotnet restore
 dotnet build
-dotnet run --project src/MantisNetMvc.Web
+dotnet run --project src/BugCore.Web
 ```
 The application will launch on `http://localhost:5000`.
 
@@ -68,9 +68,9 @@ BUGCORE is fully containerizable with a standard multi-stage .NET 8 Dockerfile:
 # Build Stage
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
-COPY MantisNetMvc/ .
-RUN dotnet restore src/MantisNetMvc.Web/MantisNetMvc.Web.csproj
-RUN dotnet publish src/MantisNetMvc.Web/MantisNetMvc.Web.csproj -c Release -o /out
+COPY BugCore/ .
+RUN dotnet restore src/BugCore.Web/BugCore.Web.csproj
+RUN dotnet publish src/BugCore.Web/BugCore.Web.csproj -c Release -o /out
 
 # Runtime Stage
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
@@ -78,11 +78,11 @@ WORKDIR /app
 COPY --from=build /out .
 EXPOSE 8080
 ENV ASPNETCORE_URLS=http://+:8080
-ENTRYPOINT ["dotnet", "MantisNetMvc.Web.dll"]
+ENTRYPOINT ["dotnet", "BugCore.Web.dll"]
 ```
 
 ### Option 2: Azure App Service or Windows Server IIS
-* **Azure App Service**: Deploy `MantisNetMvc.Web.csproj` directly via GitHub Actions or Azure DevOps pipeline targeting `.NET 8 (LTS)`.
+* **Azure App Service**: Deploy `BugCore.Web.csproj` directly via GitHub Actions or Azure DevOps pipeline targeting `.NET 8 (LTS)`.
 * **On-Premises IIS**: Install the [.NET Core Hosting Bundle](https://dotnet.microsoft.com/download/dotnet/8.0) on Windows Server, configure an IIS Application Pool set to **No Managed Code**, and point the site physical path to the published folder.
 
 ### Option 3: Linux VM (Ubuntu / Debian + Nginx Reverse Proxy)
@@ -94,7 +94,7 @@ ENTRYPOINT ["dotnet", "MantisNetMvc.Web.dll"]
    Description=BUGCORE ASP.NET Core Web App
    [Service]
    WorkingDirectory=/var/www/bugcore
-   ExecStart=/usr/bin/dotnet /var/www/bugcore/MantisNetMvc.Web.dll
+   ExecStart=/usr/bin/dotnet /var/www/bugcore/BugCore.Web.dll
    Restart=always
    Environment=ASPNETCORE_ENVIRONMENT=Production
    [Install]
